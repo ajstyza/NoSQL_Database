@@ -21,7 +21,7 @@ client.connect()
     db = client.db(dbName);
 
     AutomaticPrefetchPlugin.listen(port, () => {
-        console.log(`Example app listening at http://localhost:${port}`);
+        console.log(`app listening at http://localhost:${port}`);
     });
 })
 .catch((err) => {
@@ -34,7 +34,7 @@ app.use(express.json());
 app.post('/create', (req, res) => {
   // Use db connection to add a document
   db.collection('petCollection').insertOne(
-    { name: req.body.name, breed: req.body.breed }
+    { name: req.body.name, email: req.body.email, thoughts: req.body.thoughts, firends: req.body.friends}
   )
     .then(results => res.json(results))
     .catch(err => {
@@ -44,7 +44,7 @@ app.post('/create', (req, res) => {
 
 app.get('/read', (req, res) => {
   // Use db connection to find all documents in collection
-  db.collection('petCollection')
+  db.collection('userCollection')
     .find()
     .toArray()
     .then(results => res.json(results))
