@@ -54,6 +54,18 @@ app.post('/create', (req, res) => {
     });
 });
 
+// find thought (not working yet)
+app.get('/read', (req, res) => {
+  const thoughtId = new ObjectId(req.body.thoughts);
+  db.collection('usersCollection').findOne(
+    {thoughts: thoughtId}
+  )
+    .then(results => res.json(results))
+    .catch(err => {
+      if (err) throw err;
+    });
+});
+
 app.get('/read', (req, res) => {
   // Use db connection to find all documents in collection
   db.collection('usersCollection')
@@ -65,10 +77,10 @@ app.get('/read', (req, res) => {
     });
 });
 
+// deletes User by id
 app.delete('/delete', (req, res) => {
   // Wrap the id in the ObjectId class to instantiate a new instance
   const userId = new ObjectId(req.body.id);
-
   // Use deleteOne() to delete one object
   db.collection('usersCollection').deleteOne(
     // This is the filter. We delete only the document that matches the _id provided in the request body.
