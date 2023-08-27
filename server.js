@@ -32,16 +32,16 @@ client.connect()
 app.use(express.json());
 
 // may also need create-many to post mutiple things
-app.post('/create-many', (req, res) => {
-db.collection('usersCollection').insertMany([
-    {"tite": "balfsdafds"},
-    {"title": "insevdv"}
-])
-.then(results => res.json(results))
-.catch(err => {
-  if (err) throw err;
-})
-});
+// app.post('/create-many', (req, res) => {
+// db.collection('usersCollection').insertMany([
+//     {"tite": "balfsdafds"},
+//     {"title": "insevdv"}
+// ])
+// .then(results => res.json(results))
+// .catch(err => {
+//   if (err) throw err;
+// })
+// });
 
 app.post('/create', (req, res) => {
   // Use db connection to add a document
